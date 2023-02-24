@@ -1,18 +1,38 @@
 #Rules of possible operations
+def limits(initial_table, direction):
+    #Find the blank space
+    pos=initial_table.index(0)
+    if (direction=='u'): #up
+        if (pos>=0 and pos<4):
+            return False
+        return True
+    elif (direction=='d'): #down
+        if (pos>=12 and pos<16):
+            return False
+        return True
+    elif (direction=='l'): #left
+        if (pos==0 or pos==4 or pos==8 or pos==12):
+            return False
+        return True
+    elif (direction=='r'): #right
+        if (pos==3 or pos==7 or pos==11 or pos==15):
+            return False
+        return True
+
 def movements(initial_table, i, mov):
     temp = initial_table[i]
 
     # u -> Up, d -> Down, l -> Left, r -> Right
-    if mov == 'u':
+    if mov == 'u' and limits(initial_table, 'u'):
         initial_table[i] = initial_table[i-4]
         initial_table[i-4] = temp
-    elif mov == 'd':
+    elif mov == 'd' and limits(initial_table, 'd'):
         initial_table[i] = initial_table[i+4]
         initial_table[i+4] = temp
-    elif mov == 'l':
+    elif mov == 'l' and limits(initial_table, 'l'):
         initial_table[i] = initial_table[i-1]
         initial_table[i-1] = temp
-    elif mov == 'r':
+    elif mov == 'r' and limits(initial_table, 'r'):
         initial_table[i] = initial_table[i+1]
         initial_table[i+1] = temp
 
