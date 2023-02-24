@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Puzzle {
     //Auxiliar method
@@ -19,27 +18,28 @@ public class Puzzle {
     public static boolean movements(int[] table, char direction) {
         int pos = findIndex(table, 0);
         int temp = table[pos];
-
+        
+        //The cases in the switch represents the illegal moves
         switch(direction) {
-            case 'u':
+            case 'u': //Up
             if(!(pos >= 0 && pos < 4)) {
                 table[pos] = table[pos - 4];
                 table[pos - 4] = temp;
                 return true;
             }
-            case 'd':
+            case 'd': //Down
             if(!(pos >= 12 && pos < 15)) {
                 table[pos] = table[pos + 4];
                 table[pos + 4] = temp;
                 return true;
             }
-            case 'l':
+            case 'l': //Left
             if(!(pos == 0 || pos == 4 || pos == 8 || pos == 12)) {
                 table[pos] = table[pos - 1];
                 table[pos - 1] = temp;
                 return true;
             }
-            case 'r':
+            case 'r': //Right
             if(!(pos == 3 || pos == 7 || pos == 11 || pos == 15)) {
                 table[pos] = table[pos + 1];
                 table[pos + 1] = temp;
@@ -65,10 +65,6 @@ public class Puzzle {
                 }
             }
         }
-
-        System.out.println("Array Inicial: " + Arrays.toString(initialTable));
-        System.out.println("Array Final: " + Arrays.toString(finalTable));
-        System.out.println("Permutações: " + inv);
 
         return (blankRow%2 == 0) == (inv%2 == 0);
     }
