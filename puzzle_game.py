@@ -1,4 +1,20 @@
+#Rules of possible operations
+def movements(initial_table, i, mov):
+    temp = initial_table[i]
 
+    # u -> Up, d -> Down, l -> Left, r -> Right
+    if mov == 'u':
+        initial_table[i] = initial_table[i-4]
+        initial_table[i-4] = temp
+    elif mov == 'd':
+        initial_table[i] = initial_table[i+4]
+        initial_table[i+4] = temp
+    elif mov == 'l':
+        initial_table[i] = initial_table[i-1]
+        initial_table[i-1] = temp
+    elif mov == 'r':
+        initial_table[i] = initial_table[i+1]
+        initial_table[i+1] = temp
 
 #Solvability of the puzzle -> NOTA: NÃO é o algoritmo optimizado
 def solvability(initial_table, final_table):
