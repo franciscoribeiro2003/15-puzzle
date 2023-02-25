@@ -1,9 +1,9 @@
 # 15 PUZZLE
-### Descrição
+## Descrição
 
 Este é o "trabalho 1" feito por Francisco Ribeiro, Matheus Bissacot e Sérgio Coelho para a cadeira de Inteligência Artificial do curso Ciência dos computadores, da faculdade de Ciências da Universidade do Porto.
 
-## Objetivo
+### Objetivo
 
 * [ ] Implementar um algoritmo para saber se um dado puzzle 15 é resolvível ou não.
 * [ ] Implementação dos operadores que transformam uma configuração de jogo na sua sucessora.
@@ -16,7 +16,7 @@ Este é o "trabalho 1" feito por Francisco Ribeiro, Matheus Bissacot e Sérgio C
 Para executar o programa, basta correr o seguinte comando:
 
 ```bash
-java Puzzle 
+$ java Puzzle 
 ```
 
 ```bash
