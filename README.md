@@ -18,7 +18,7 @@ Para executar o programa, basta correr o seguinte comando:
 ```bash
 $ java Puzzle 
 ```
-
+Introduzir a configuração inicial e final e apenas se for realizável o jogo será possivel interagir com os tabuleiros
 ```bash
 +----------------------+-------------------+------------------+
 |                 Interacao para a proxima jogada             |
