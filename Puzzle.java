@@ -135,10 +135,18 @@ class TABULEIRO {
         String res = "";
         for(int i = 0; i < 16; i++) {
             if(i%4 == 0) {
-                res += "\n";
+                if (i==0) res = "\n";
+                else res += "|\n";
+                res += "+---------------+\n";
             }
-            res += itable[i] + " ";
+            if (itable[i]<10){
+                res += "|"+ itable[i] + "  ";
+            }
+            else{
+                res += "|"+itable[i] + " ";
+            }
         }
+        res+="|"+"\n+---------------+";
         res += "\n";
         return res;
     }
