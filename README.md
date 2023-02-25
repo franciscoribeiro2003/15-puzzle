@@ -1,4 +1,5 @@
 # 15 PUZZLE
+# Parte 1
 ## Descrição
 
 Este é o "trabalho para a semana 2" feito por Francisco Ribeiro, Matheus Bissacot e Sérgio Coelho para a cadeira de Inteligência Artificial do curso Ciência dos computadores, da faculdade de Ciências da Universidade do Porto.
@@ -98,3 +99,6 @@ Puzzle Resolvido
 ```
 ## Referências
 https://youtu.be/YI1WqYKHi78
+
+#Parte 2
+...
