@@ -2,6 +2,7 @@
 ## Descrição
 
 Este é o "trabalho 1" feito por Francisco Ribeiro, Matheus Bissacot e Sérgio Coelho para a cadeira de Inteligência Artificial do curso Ciência dos computadores, da faculdade de Ciências da Universidade do Porto.
+A estrutura de dados utilizada para representar uma configuração de jogo foi uma lista de inteiros.
 
 ### Objetivo
 
