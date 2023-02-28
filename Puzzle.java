@@ -1,8 +1,10 @@
 import java.util.Scanner;
+import java.lang.Math;
 
-public class Puzzle {
-    //Auxiliar method
-    private static int findIndex(int[] table, int number) {
+//Auxiliar Functions
+class Auxiliary {
+    //Find index of a specific number
+    int findIndex(int[] table, int number) {
         int res = -1;
         for(int i = 0; i < table.length; i++) {
             if(table[i] == number) {
@@ -14,53 +16,114 @@ public class Puzzle {
         return res;
     }
 
+    //Compare two arrays
+    boolean compare(int[] list1, int[] list2) {
+        boolean res = true;
+
+        for(int i = 0; i < list1.length; i++) 
+            if(list1[i] != list2[i]) 
+                res = false;
+            
+
+        return res;
+    }
+
+    //Copy an Array
+    int[] copyArray(int[] list) {
+        int[] res = new int[list.length];
+        for(int i = 0; i < list.length; i++) {
+            res[i] = list[i];
+        }
+
+        return res;
+    }
+}
+
+//Table of the game
+class Table {
+    int[] initialTable;
+    int[] finalTable;
+
+    Auxiliary aux = new Auxiliary();
+
+    Table() {
+        initialTable = new int[16];
+        finalTable = new int[16];
+    }
+
+    void read(Scanner in){
+        for(int i = 0; i < 16; i++) initialTable[i] = in.nextInt();
+        for(int j = 0; j < 16; j++) finalTable[j] = in.nextInt();
+    }
+
     //Movements of the game
-    public static boolean movements(int[] table, char direction) {
-        int pos = findIndex(table, 0);
+    private boolean movements(int[] table, char direction) {
+        int pos = aux.findIndex(table, 0);
         int temp = table[pos];
-        
-        //The cases in the switch represents the illegal moves
+
         switch(direction) {
-            case 'u': //Up
+            case 'u':
             if(!(pos >= 0 && pos < 4)) {
                 table[pos] = table[pos - 4];
                 table[pos - 4] = temp;
                 return true;
             }
-            case 'd': //Down
+            break;
+
+            case 'd':
             if(!(pos >= 12 && pos < 15)) {
                 table[pos] = table[pos + 4];
                 table[pos + 4] = temp;
                 return true;
             }
-            case 'l': //Left
+            break;
+
+            case 'l':
             if(!(pos == 0 || pos == 4 || pos == 8 || pos == 12)) {
                 table[pos] = table[pos - 1];
                 table[pos - 1] = temp;
                 return true;
             }
-            case 'r': //Right
+            break;
+
+            case 'r':
             if(!(pos == 3 || pos == 7 || pos == 11 || pos == 15)) {
                 table[pos] = table[pos + 1];
                 table[pos + 1] = temp;
                 return true;
             }
+            break;
         }
 
         return false;
     }
 
-    //Solvability of the Puzzle
-    public static boolean isSolvable(int[] initialTable, int[] finalTable) {
-        int inv = 0; //Permutations
-        int blankRow = 0; //Distance between empty spaces
+    private int blankCount(int[] initialTable, int[] finalTable) {
+        int pos = aux.findIndex(initialTable, 0);
+        int posFinal = aux.findIndex(finalTable, 0);
 
+        //The Lines are formed by: (0-3)(4-7)(8-11)(12-15)
+        int vertDist = Math.abs((posFinal/4) - (pos/4));
+        int horiDist = Math.abs((posFinal%4) - (pos%4));
+
+        int finalDist = vertDist + horiDist;
+
+        return finalDist;
+    }
+
+    //Solvability of the Puzzle
+    public boolean isSolvable() {
+        int inv = 0; //Permutations
+        int blankRow = blankCount(initialTable, finalTable); //Distance between empty spaces
+        int[] iTable = aux.copyArray(initialTable);
+        
+        //Calculate the permutations
         for(int i = 0; i < 16; i++) {
-            if(initialTable[i] != finalTable[i]) {
-                for(int j = findIndex(initialTable, finalTable[i]); j > i; j--) {
-                    int temp = initialTable[j - 1];
-                    initialTable[j - 1] = initialTable[j];
-                    initialTable[j] = temp;
+            if(iTable[i] != finalTable[i]) {
+                for(int j = aux.findIndex(iTable, finalTable[i]); j > i; j--) {
+                    int temp = iTable[j - 1];
+                    iTable[j - 1] = iTable[j];
+                    iTable[j] = temp;
                     inv++;
                 }
             }
@@ -69,16 +132,44 @@ public class Puzzle {
         return (blankRow%2 == 0) == (inv%2 == 0);
     }
 
+    //print the table
+    public String toString(int[] itable) {
+        String res = "";
+        for(int i = 0; i < 16; i++) {
+            if(i%4 == 0) {
+                if (i==0) res = "\n";
+                else res += "|\n";
+                res += "+---------------+\n";
+            }
+            if (itable[i]<10){
+                res += "|"+ itable[i] + "  ";
+            }
+            else{
+                res += "|"+itable[i] + " ";
+            }
+        }
+        res+="|"+"\n+---------------+";
+        res += "\n";
+        return res;
+    }
+
+    public void printTables() {
+        System.out.println("Tabela Inicial: " + toString(initialTable) + "\n" + "Tabela Final: " + toString(finalTable));
+    }
+
+}
+
+public class Puzzle {
+
     public static void main(String[] args) {
-        //Input Lines
-        Scanner in = new Scanner(System.in);
+         Table table = new Table();
+         Scanner in = new Scanner(System.in);
 
-        int[] initialTable = new int[16];
-        int[] finalTable = new int[16];
+         table.read(in);
 
-        for(int i = 0; i < 16; i++) initialTable[i] = in.nextInt();
-        for(int j = 0; j < 16; j++) finalTable[j] = in.nextInt();
+         table.printTables();
 
-        isSolvable(initialTable, finalTable);
+         if(table.isSolvable()) System.out.println("Tem solução");
+         else System.out.println("Não tem solução");
     }
 }
