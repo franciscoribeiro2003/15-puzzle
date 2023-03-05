@@ -5,17 +5,17 @@
 // Tree of the movements of the Table
 // -----------------------------------------------------------
 
-public class BTree<T> {   
-   private BTNode<T> root; // raiz da arvore
+public class Tree<T> {   
+   private Node<T> root; // raiz da arvore
 
    // Construtor
-   BTree() {
+   Tree() {
       root = null;
    }
 
    // Getter e Setter para a raiz
-   public BTNode<T> getRoot() {return root;}
-   public void setRoot(BTNode<T> r) {root = r;}
+   public Node<T> getRoot() {return root;}
+   public void setRoot(Node<T> r) {root = r;}
 
    // Verificar se arvore esta vazia
    public boolean isEmpty() {
@@ -29,7 +29,7 @@ public class BTree<T> {
       return numberNodes(root);
    }
 
-   private int numberNodes(BTNode<T> n) {
+   private int numberNodes(Node<T> n) {
       if (n == null) return 0;
       return 1 + numberNodes(n.getUp()) + numberNodes(n.getDown()) + numberNodes(n.getLeft()) + numberNodes(n.getRight());
    }
@@ -41,9 +41,9 @@ public class BTree<T> {
       return depth(root);
    }
 
-   private int depth(BTNode<T> n) {
+   private int depth(Node<T> n) {
       if (n == null) return -1;
-      return 1 + Math.max(depth(n.getUp()), depth(n.getDown()), depth(n.getLeft()), depth(n.getRight()));
+      return 1 + Math.max(Math.max(depth(n.getUp()), depth(n.getDown())), Math.max(depth(n.getLeft()), depth(n.getRight())));
    }
 
    // --------------------------------------------------------
@@ -53,7 +53,7 @@ public class BTree<T> {
       return contains(root, value);
    }
 
-   private boolean contains(BTNode<T> n, T value) {
+   private boolean contains(Node<T> n, T value) {
       if (n==null) return false;
       if (n.getValue().equals(value)) return true;
       return contains(n.getUp(), value) || contains(n.getDown(), value) || contains(n.getLeft(), value) || contains(n.getRight(), value);

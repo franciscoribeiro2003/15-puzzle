@@ -13,7 +13,7 @@ public class Node<T> {
     private Node<T> right; // Table with the right movement
 
    // Construtor
-   BTNode(T v, BTNode<T> u, BTNode<T> d, BTNode<T> l, BTNode<T> r) {
+   Node(T v, Node<T> u, Node<T> d, Node<T> l, Node<T> r) {
       value = v;
       up = u;
       down = d;
@@ -23,13 +23,14 @@ public class Node<T> {
 
    // Getters e Setters
    public T getValue() {return value;}
-    public BTNode<T> getUp() {return left;}
-   public BTNode<T> getDown() {return right;}
-   public BTNode<T> getLeft() {return left;}
-   public BTNode<T> getRight() {return right;}
+    public Node<T> getUp() {return left;}
+   public Node<T> getDown() {return right;}
+   public Node<T> getLeft() {return left;}
+   public Node<T> getRight() {return right;}
+
    public void setValue(T v) {value = v;}
-    public void setUp(BTNode<T> l) {left = l;}
-   public void setDown(BTNode<T> r) {right = r;}   
-   public void setLeft(BTNode<T> l) {left = l;}
-   public void setRight(BTNode<T> r) {right = r;}   
+    public void setUp(Node<T> l) {left = l;}
+   public void setDown(Node<T> r) {right = r;}   
+   public void setLeft(Node<T> l) {left = l;}
+   public void setRight(Node<T> r) {right = r;}   
 }
