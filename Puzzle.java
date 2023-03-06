@@ -32,7 +32,7 @@ class Puzzle {
             break;
 
             case 'd':
-            if(!(pos >= 12 && pos < 15)) {
+            if(!(pos >= 12 && pos <= 15)) {
                 res[pos] = res[pos + 4];
                 res[pos + 4] = temp;
             }
@@ -114,26 +114,22 @@ class Puzzle {
     //Search algorithms
     public void DFS() {
 
-        Node<int[]> root = new Node<int[]>(initialTable, null, null, null, null);
+        Node<int[]> up = new Node<int[]>(movements(initialTable, 'u'), null, null, null, null);
+        Node<int[]> down = new Node<int[]>(movements(initialTable, 'd'), null, null, null, null);
+        Node<int[]> left = new Node<int[]>(movements(initialTable, 'l'), null, null, null, null);
+        Node<int[]> right = new Node<int[]>(movements(initialTable, 'r'), null, null, null, null);
+
+        Node<int[]> root = new Node<int[]>(initialTable, up, down, left, right);
         Tree<int[]> path = new Tree<int[]>();
         path.setRoot(root);
 
         System.out.print("DFS:");
-      
-        Stack<Node<int[]>> q = new LinkedListStack<Node<int[]>>();
-        
-        q.push(root);
-        while (!q.isEmpty()) {
-            Node<int[]> cur = q.pop();
-            if (cur != null) {
-                System.out.print(" " + toString(cur.getValue()));
-                q.push(cur.getUp());
-                q.push(cur.getDown());
-                q.push(cur.getLeft());
-                q.push(cur.getRight()); 
-            }
-        }
-        System.out.println();
+
+        System.out.println("Principal: " + toString(root.getValue()));
+        System.out.println("Left: " + toString(root.getLeft().getValue()));
+        System.out.println("Right: " + toString(root.getRight().getValue()));
+        System.out.println("Up: " + toString(root.getUp().getValue()));
+        System.out.println("Down: " + toString(root.getDown().getValue()));
     }
 
 }

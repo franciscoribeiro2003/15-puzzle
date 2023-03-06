@@ -23,14 +23,14 @@ public class Node<T> {
 
    // Getters e Setters
    public T getValue() {return value;}
-    public Node<T> getUp() {return left;}
-   public Node<T> getDown() {return right;}
+    public Node<T> getUp() {return up;}
+   public Node<T> getDown() {return down;}
    public Node<T> getLeft() {return left;}
    public Node<T> getRight() {return right;}
 
    public void setValue(T v) {value = v;}
-    public void setUp(Node<T> l) {left = l;}
-   public void setDown(Node<T> r) {right = r;}   
+   public void setUp(Node<T> u) {up = u;}
+   public void setDown(Node<T> d) {down = d;}
    public void setLeft(Node<T> l) {left = l;}
-   public void setRight(Node<T> r) {right = r;}   
+   public void setRight(Node<T> r) {right = r;}
 }
