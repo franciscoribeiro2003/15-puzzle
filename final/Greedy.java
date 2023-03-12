@@ -1,7 +1,8 @@
 import java.util.*;
-class DFS{
-    static Stack<Node> fila;
+
+class Greedy{
     static HashMap<Tabuleiro, Integer> visitados;
+    static PriorityQueue<Node> fila;
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -17,14 +18,14 @@ class DFS{
         }
         System.out.println("O tabuleiro inicial tem solucao para o tabuleiro objetivo!");
         System.out.println();
-        System.out.println("----------------DFS----------------");
-        solve(atual,objetivo);
-
+        System.out.println("-----Greedy Utilizando a Euristica distacia de Manhattan-----");
+        solve(atual,objetivo,1);
+        System.out.println('\n');
+        System.out.println("-----Greedy Utilizando a Euristica pecas Missplaced-----");
+        solve(atual,objetivo,2);
     }
 
-    public static void solve(Tabuleiro atual, Tabuleiro objetivo){
-        int MAX_DEPTH=atual.countMisplaced(objetivo)+ atual.countManhattan(objetivo);
-
+    public static void solve(Tabuleiro atual, Tabuleiro objetivo, int euristica){
         // gravar o tempo inicial do programa
         long tempoInicial = System.currentTimeMillis(); 
 
@@ -36,14 +37,21 @@ class DFS{
 
         //criar o hashmap para armazenar os nos visitados
         visitados = new HashMap<>();
-        
 
-        fila = new Stack<Node>(); // fila de nos a serem visitados
+        //fila de prioridade para armazenar os nos a serem visitados
+        //compara os custos dos nos de acordo com a euristica escolhida
+        fila = new PriorityQueue<>(new Comparator<Node>() { 
+            @Override
+            public int compare(Node o1, Node o2) {
+                return o1.custo - o2.custo;
+            }
+        });
+
         Node no = new Node(atual, null,0,0,""); // cria o no inicial
         fila.add(no); // adiciona o no inicial na fila
-        System.out.println("Iniciando a busca com MAX_DEPTH a " + MAX_DEPTH + " ...");
+        System.out.println("Iniciando a busca ...");
         while(!fila.isEmpty()){
-            no = fila.pop(); // retira o primeiro no da fila
+            no = fila.poll(); // retira o primeiro no da fila
             if(no.tab.equals(objetivo)){ // verifica se o no atual é o objetivo
                 // gravar o tempo final do programa
                 long tempoFinal = (long) (System.currentTimeMillis());
@@ -58,21 +66,19 @@ class DFS{
                 System.out.println("Nós gerados: " + nos);
                 return;
             }
-            if (!visitados.containsKey(no.tab) && no.profundidade<MAX_DEPTH){
+            if (!visitados.containsKey(no.tab)){
                 visitados.put(no.tab, no.tab.hashCode());
-                Node up = no.moveUp(objetivo,0);nos++;
-                Node left = no.moveLeft(objetivo,0);nos++;
-                Node down = no.moveDown(objetivo,0);nos++;
-                Node right = no.moveRight(objetivo,0);nos++;
-
-                if (up!=null)   fila.add(up);
+                Node up = no.moveUp(objetivo,euristica);nos++;
+                Node left = no.moveLeft(objetivo,euristica);nos++;
+                Node down = no.moveDown(objetivo,euristica);nos++;
+                Node right = no.moveRight(objetivo,euristica);nos++;
+           
+                if (up!=null) fila.add(up);
                 if (down!=null) fila.add(down);
-                if (left!=null) fila.add(left);
+                if (left!=null) fila.add(left); 
                 if (right!=null) fila.add(right);
             }
         }
-        System.out.println("Não encontrou solução :(");
+
     }
-
-
 }

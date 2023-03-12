@@ -12,6 +12,13 @@ class BFS{
         atual.read(in);
         objetivo.read(in);
 
+        if (!atual.hasSolution(objetivo)){ 
+            System.out.println("O tabuleiro inicial nao tem solucao para o tabuleiro objetivo!");
+            return;
+        }
+        System.out.println("O tabuleiro inicial tem solucao para o tabuleiro objetivo!");
+        System.out.println();
+        System.out.println("----------------BFS----------------");
         solve(atual,objetivo);
 
     }
