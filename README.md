@@ -19,6 +19,9 @@
 
 ## Descrição
 
+O jogo do 15 é um jogo com 16 casas, dos quais 15 estão ocupados com peças numeradas de 1 a 15 e um espaço branco por norma é representado
+por 0. O objetivo do jogo é mover a peça vazia de forma que se chegue a uma configuração final desejada.
+
 Este é um trabalho feito por Francisco Ribeiro, Matheus Bissacot e Sérgio Coelho para a cadeira de Inteligência Artificial do curso Ciência dos computadores, da faculdade de Ciências da Universidade do Porto.
 A estrutura de dados utilizada para representar uma configuração de jogo foi uma lista de inteiros.
 
