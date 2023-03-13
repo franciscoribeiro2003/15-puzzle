@@ -1,4 +1,5 @@
 # 15 PUZZLE & Search Algorithms
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=franciscoribeiro2003.15-puzzle)
 ```
 +----------------------+-------------------+------------------+
 |                            15 PUZZLE                        |
