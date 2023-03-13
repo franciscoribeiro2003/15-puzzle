@@ -76,6 +76,10 @@ Espaço de memória: 0  MB
 Nós gerados: 12
 
 ```
+
+### Mais informações
+Ler o relatório final que abrange uma maior descrição sobre o problema.
+
 ## Pesquisas dísponíveis
 - DFS
 - BFS
