@@ -1,7 +1,7 @@
 # 15 PUZZLE & Search Algorithms
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=franciscoribeiro2003.15-puzzle)
 
-Trabalho realizaado por [Francisco Ribeiro](https://github.com/franciscoribeiro2003), [Matheus Bissacot](https://github.com/MatheusBissacot) e [Sérgio Coelho](https://github.com/sergioccoelho).
+Trabalho realizado por [Francisco Ribeiro](https://github.com/franciscoribeiro2003), [Matheus Bissacot](https://github.com/MatheusBissacot) e [Sérgio Coelho](https://github.com/sergioccoelho).
 ```
 +----------------------+-------------------+------------------+
 |                            15 PUZZLE                        |
